@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.okta</groupId>
+  <artifactId>saml-toolkit</artifactId>
+  <versioning>
+    <release>1.0.5-000148-30924be</release>
+    <versions>
+      <version>1.0.5-000148-30924be</version>
+    </versions>
+    <lastUpdated>20140416194414</lastUpdated>
+  </versioning>
+</metadata>
