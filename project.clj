@@ -1,6 +1,6 @@
 (defproject ring/ring-okta "0.1.0-SNAPSHOT"
   :description "Ring middleware for Okta Single Sign-on"
-  :url "https://github.com/testdouble/ring-okta"
+  :url "https://github.com/Hendrick/ring-okta"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :repositories {"local" ~(str (.toURI (java.io.File. "maven_repository")))}
