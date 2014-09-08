@@ -30,9 +30,10 @@
 
   (POST "/login" request
        (okta-session/login request))
+
   (POST "/logout" request
        (okta-session/logout request)
-       (merge (ring-response/redirect (:redirect-after-logout request)))))
+       (merge (ring-response/redirect-after-post (:redirect-after-logout request)))))
 
 (defn wrap-okta
   "Ring middleware for Okta Single Sign-on
