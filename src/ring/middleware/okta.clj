@@ -54,12 +54,14 @@
   {:arglists '([handler] [handler options]) :added "0.1.0"}
   [handler & [{:as options}]]
   (fn [request]
-    (cond
-     (login? request) (handler (assoc request :okta-config-location (or (:okta-config options)
-                                                                        (io/resource "okta-config.xml"))))
-     (logout? request) (handler (assoc request :redirect-after-logout (or (:redirect-after-logout options)
-                                                                          (:okta-home options)
-                                                                          "/")))
-     (logged-in? request) (handler request)
-     (force-user? options) (handler (assoc-in request [:session :okta/user] (:force-user options)))
-     :else (ring-response/redirect (:okta-home options)))))
+    (if (nil? (:okta-home options))
+      (throw (IllegalArgumentException. ":okta-home is required"))
+      (cond
+       (login? request) (handler (assoc request :okta-config-location (or (:okta-config options)
+                                                                          (io/resource "okta-config.xml"))))
+       (logout? request) (handler (assoc request :redirect-after-logout (or (:redirect-after-logout options)
+                                                                            (:okta-home options)
+                                                                            "/")))
+       (logged-in? request) (handler request)
+       (force-user? options) (handler (assoc-in request [:session :okta/user] (:force-user options)))
+       :else (ring-response/redirect (:okta-home options))))))
