@@ -5,8 +5,8 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :repositories {"local" ~(str (.toURI (java.io.File. "maven_repository")))}
   :dependencies [[org.clojure/clojure "1.6.0"]
-                 [ring/ring-core "1.3.0"]
-                 [compojure "1.1.8"]
+                 [ring/ring-core "1.3.1"]
+                 [compojure "1.1.9"]
                  [org.clojure/data.codec "0.1.0"]
                  [com.okta/saml-toolkit "1.0.5-000148-30924be" :exclusions [[org.slf4j/slf4j-api]]]
 
