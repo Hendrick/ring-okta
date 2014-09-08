@@ -34,7 +34,7 @@
        (okta-session/logout request)
        (merge (ring-response/redirect (:redirect-after-logout request)))))
 
-(defn wrap-with-okta
+(defn wrap-okta
   "Ring middleware for Okta Single Sign-on
 
   Accepts the following options:
