@@ -14,5 +14,13 @@
 (defn logged-in? [{:keys [session]}]
   (:okta/user session))
 
+(defn skip-route? [{:keys [request-method] :as request} skip-routes]
+  (when skip-routes
+    (let [route-index (.indexOf skip-routes (ring-request/path-info request))
+          route-method (get skip-routes (dec route-index))]
+      (and (> route-index -1)
+           (or (= :any route-method)
+               (= request-method route-method))))))
+
 (defn force-user? [options]
   (not-nil? (:force-user options)))

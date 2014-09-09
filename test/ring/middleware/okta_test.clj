@@ -32,5 +32,8 @@
       (testing "default")))
 
   (testing "#logged-in")
+  (testing "#skip-routes"
+    (testing "skip a defined request method")
+    (testing "skip any request method"))
   (testing "#force-user")
   (testing "#other"))

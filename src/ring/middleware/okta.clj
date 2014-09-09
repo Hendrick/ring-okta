@@ -35,6 +35,9 @@
   :redirect-after-logout - the destination URL to be redirected to after a `POST /logout`
                            (defaults to \"/\")
 
+  :skip-routes           - a list of routes to skip Okta authentication
+                           e.g. [:get \"/about\" :get \"/contact\"]
+
   :force-user            - a default user to be used for development"
 
   {:arglists '([handler options]) :added "0.1.0"}
@@ -48,5 +51,6 @@
        (p/logout? request) (handler (assoc request :redirect-after-logout (or (:redirect-after-logout options)
                                                                             "/")))
        (p/logged-in? request) (handler request)
+       (p/skip-route? request (:skip-routes options)) (handler request)
        (p/force-user? options) (handler (assoc-in request [:session :okta/user] (:force-user options)))
        :else (ring-response/redirect (:okta-home options))))))
