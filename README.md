@@ -9,20 +9,20 @@ Ring middleware for Okta Single Sign-on.
 ### Leiningen
 
 ```
-[ring/ring-okta "0.1.0"]
+[ring-okta "0.1.0"]
 ```
 
 ### Gradle
 
 ```
-compile "ring:ring-okta:0.1.0"
+compile "ring-okta:ring-okta:0.1.0"
 ```
 
 ### Maven
 
 ```
 <dependency>
-  <groupId>ring</groupId>
+  <groupId>ring-okta</groupId>
   <artifactId>ring-okta</artifactId>
   <version>0.1.0</version>
 </dependency
