@@ -51,8 +51,8 @@
 
   :force-user            - a default user to be used for development"
 
-  {:arglists '([handler] [handler options]) :added "0.1.0"}
-  [handler & [{:as options}]]
+  {:arglists '([handler options]) :added "0.1.0"}
+  [handler options]
   (fn [request]
     (if (nil? (:okta-home options))
       (throw (IllegalArgumentException. ":okta-home is required"))

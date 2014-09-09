@@ -10,7 +10,7 @@
 (deftest test-wrap-okta
   (let [default-handler #(response %)]
     (testing ":okta-home option is required"
-      (let [handler (wrap-okta default-handler)]
+      (let [handler (wrap-okta default-handler {})]
         (is (thrown? IllegalArgumentException
                      (handler (request :get "/"))))))
 
