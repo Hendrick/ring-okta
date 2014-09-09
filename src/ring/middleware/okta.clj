@@ -2,23 +2,9 @@
   "Ring middleware for Okta Single Sign-on"
   (:require [clojure.java.io :as io]
             [ring.util.response :as ring-response]
-            [ring.util.request :as ring-request]
             [compojure.core :refer [POST defroutes]]
-            [ring.ring-okta.session :as okta-session]))
-
-(defn- login? [{:keys [request-method] :as request}]
-  (and (= request-method :post)
-       (= (ring-request/path-info request) "/login")))
-
-(defn- logout? [{:keys [request-method] :as request}]
-  (and (= request-method :post)
-       (= (ring-request/path-info request) "/logout")))
-
-(defn- logged-in? [{:keys [session]}]
-  (:okta/user session))
-
-(defn- force-user? [options]
-  (:force-user options))
+            [ring.ring-okta.session :as okta-session]
+            [ring.ring-okta.predicates :as p]))
 
 (defroutes okta-routes
   "The compojure routes for Okta
@@ -57,10 +43,10 @@
     (if (nil? (:okta-home options))
       (throw (IllegalArgumentException. ":okta-home is required"))
       (cond
-       (login? request) (handler (assoc request :okta-config-location (or (:okta-config options)
+       (p/login? request) (handler (assoc request :okta-config-location (or (:okta-config options)
                                                                           (io/resource "okta-config.xml"))))
-       (logout? request) (handler (assoc request :redirect-after-logout (or (:redirect-after-logout options)
+       (p/logout? request) (handler (assoc request :redirect-after-logout (or (:redirect-after-logout options)
                                                                             "/")))
-       (logged-in? request) (handler request)
-       (force-user? options) (handler (assoc-in request [:session :okta/user] (:force-user options)))
+       (p/logged-in? request) (handler request)
+       (p/force-user? options) (handler (assoc-in request [:session :okta/user] (:force-user options)))
        :else (ring-response/redirect (:okta-home options))))))
