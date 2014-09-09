@@ -47,7 +47,7 @@
                            (defaults to \"resources/okta-config.xml\")
 
   :redirect-after-logout - the destination URL to be redirected to after a `POST /logout`
-                           (defaults to :okta-home then falls back to \"/\")
+                           (defaults to \"/\")
 
   :force-user            - a default user to be used for development"
 
@@ -60,7 +60,6 @@
        (login? request) (handler (assoc request :okta-config-location (or (:okta-config options)
                                                                           (io/resource "okta-config.xml"))))
        (logout? request) (handler (assoc request :redirect-after-logout (or (:redirect-after-logout options)
-                                                                            (:okta-home options)
                                                                             "/")))
        (logged-in? request) (handler request)
        (force-user? options) (handler (assoc-in request [:session :okta/user] (:force-user options)))
