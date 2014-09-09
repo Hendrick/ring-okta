@@ -18,7 +18,7 @@
 (defn login [{:keys [params okta-config-location]}]
   (let [okta-config (slurp (io/reader okta-config-location))
         okta-response (respond-to-okta-post params okta-config)]
-    (-> (ring-response/redirect (:redirect-url okta-response))
+    (-> (ring-response/redirect-after-post (:redirect-url okta-response))
         (assoc-in [:session :okta/user] (:authenticated-user-email okta-response)))))
 
 (defn logout [{:keys [session]}]
