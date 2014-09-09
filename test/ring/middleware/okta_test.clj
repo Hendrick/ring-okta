@@ -20,4 +20,17 @@
         (let [handler (wrap-okta default-handler {:okta-home okta-home
                                                   :okta-config okta-config})
               response (handler (request :post "/login"))]
-          (is (= (-> response :body :okta-config-location) okta-config)))))))
+          (is (= (-> response :body :okta-config-location) okta-config))))
+      (testing "user in session")
+      (testing "redirected after login")))
+
+  (testing "#logout"
+    (testing "user not in session")
+    (testing "redirected after logout"
+      (testing "defined")
+      (tessting ":okta-home")
+      (testing "default")))
+
+  (testing "#logged-in")
+  (testing "#force-user")
+  (testing "#other"))
