@@ -28,7 +28,7 @@
     (testing "user not in session")
     (testing "redirected after logout"
       (testing "defined")
-      (tessting ":okta-home")
+      (testing ":okta-home")
       (testing "default")))
 
   (testing "#logged-in")
