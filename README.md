@@ -48,6 +48,9 @@ compile "ring-okta:ring-okta:0.1.0"
 
 - [API Docs](http://Hendrick.github.io/ring-okta/ring.middleware.okta.html)
 
+The documentation is built with codox (`lein doc`) and published to
+the [gh-pages](https://github.com/Hendrick/ring-okta/tree/gh-pages) branch.
+
 ## License
 
 Copyright © 2014 Hendrick Automotive Group
