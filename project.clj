@@ -8,6 +8,7 @@
                  [ring/ring-core "1.3.1"]
                  [compojure "1.1.9"]
                  [org.clojure/data.codec "0.1.0"]
+                 [commons-codec "1.9"]
                  [com.okta/saml-toolkit "1.0.5-000148-30924be" :exclusions [[org.slf4j/slf4j-api]]]
 
                  ;; okta dependencies -- some are not specified in their pom,
