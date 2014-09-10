@@ -1,6 +1,6 @@
 # ring-okta
 
-[![Dependency Status](https://www.versioneye.com/user/projects/540df18842c8d5146300000c/badge.svg)](https://www.versioneye.com/user/projects/540df18842c8d5146300000c)
+[![Build Status](https://travis-ci.org/Hendrick/ring-okta.svg?branch=master)](https://travis-ci.org/Hendrick/ring-okta) [![Dependency Status](https://www.versioneye.com/user/projects/540df18842c8d5146300000c/badge.svg)](https://www.versioneye.com/user/projects/540df18842c8d5146300000c)
 
 Ring middleware for Okta Single Sign-on.
 

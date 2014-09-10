@@ -1,2 +1,4 @@
 language: clojure
 script: lein test
+notifications:
+  slack: hendrick:PHKZKNc7PL6h6BMyGvFk1rts
