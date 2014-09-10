@@ -32,12 +32,16 @@ compile "ring-okta:ring-okta:0.1.0"
 
 ```
 (ns com.company.core
-  (:require [compojure.core :refer [defroutes GET]]
+  (:require [compojure.core :refer :all]
+            [compojure.route :as route]
             [ring.middleware.okta :refer [wrap-okta okta-routes]]))
 
 (defroutes company-routes
   (GET "/" [] "<h1>Hello World</h1>")
-  okta-routes)
+
+  okta-routes
+
+  (route/not-found "<h1>Page not found</h1>"))
 
 (def app
   (-> company-routes
