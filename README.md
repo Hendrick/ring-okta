@@ -28,6 +28,14 @@ compile "ring-okta:ring-okta:0.1.0"
 </dependency
 ```
 
+### Okta SAML Toolkit Dependency
+
+Since Okta doesn't publish the SAML Toolkit for Java, you must
+download it
+[here](https://support.okta.com/entries/25009573-Current-SAML-Toolkit-for-Java-Version).
+You then must `mvn install` it to your local maven repository. Check
+the `project.clj` for the version of the SAML Toolkit to download from Okta.
+
 ## Usage
 
 ```
