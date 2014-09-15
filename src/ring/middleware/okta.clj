@@ -47,9 +47,9 @@
       (throw (IllegalArgumentException. ":okta-home is required"))
       (cond
        (p/login? request) (handler (assoc request :okta-config-location (or (:okta-config options)
-                                                                          (io/resource "okta-config.xml"))))
+                                                                            (io/resource "okta-config.xml"))))
        (p/logout? request) (handler (assoc request :redirect-after-logout (or (:redirect-after-logout options)
-                                                                            "/")))
+                                                                              "/")))
        (p/logged-in? request) (handler request)
        (p/skip-route? request (:skip-routes options)) (handler request)
        (p/force-user? options) (handler (assoc-in request [:session :okta/user] (:force-user options)))
