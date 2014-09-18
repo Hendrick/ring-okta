@@ -22,5 +22,5 @@
            (or (= :any route-method)
                (= request-method route-method))))))
 
-(defn force-user? [options]
-  (not-nil? (:force-user options)))
+(defn force-user? [force-user]
+  (not-nil? force-user))

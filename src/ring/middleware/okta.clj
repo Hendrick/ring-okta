@@ -52,5 +52,5 @@
                                                                               "/")))
        (p/logged-in? request) (handler request)
        (p/skip-route? request (:skip-routes options)) (handler request)
-       (p/force-user? options) (handler (assoc-in request [:session :okta/user] (:force-user options)))
+       (p/force-user? (:force-user options)) (handler (assoc-in request [:session :okta/user] (:force-user options)))
        :else (ring-response/redirect (:okta-home options))))))
