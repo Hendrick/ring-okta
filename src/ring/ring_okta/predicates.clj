@@ -16,7 +16,8 @@
 
 (defn skip-route? [{:keys [request-method] :as request} skip-routes]
   (when skip-routes
-    (let [route-index (.indexOf skip-routes (ring-request/path-info request))
+    (let [request-route (ring-request/path-info request)
+          route-index (.indexOf skip-routes request-route)
           route-method (get skip-routes (dec route-index))]
       (and (> route-index -1)
            (or (= :any route-method)
