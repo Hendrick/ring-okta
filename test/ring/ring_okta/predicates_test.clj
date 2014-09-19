@@ -7,7 +7,7 @@
   (testing "match method and route"
     (is (p/login? (request :post "/login"))))
 
-  (testing "method but not route"
+  (testing "match method but not route"
     (is (not (p/login? (request :post "/foo")))))
 
   (testing "match route but not method"
