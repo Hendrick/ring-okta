@@ -1,5 +1,5 @@
 language: clojure
-script: lein test
+script: lein test-all-profiles
 notifications:
   slack: hendrick:PHKZKNc7PL6h6BMyGvFk1rts
 branches:

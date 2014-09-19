@@ -22,6 +22,6 @@
                  [org.opensaml/opensaml "2.5.1-1"]]
   :plugins [[codox "0.8.10"]]
   :codox {:include ring.middleware.okta}
-  :profiles {:1.3 {:dependencies [[org.clojure/clojure "1.3.0"]]}
-             :1.4 {:dependencies [[org.clojure/clojure "1.4.0"]]} 
-             :1.5 {:dependencies [[org.clojure/clojure "1.5.1"]]}})
+  :profiles {:1.4 {:dependencies [[org.clojure/clojure "1.4.0"]]}
+             :1.5 {:dependencies [[org.clojure/clojure "1.5.1"]]}}
+  :aliases {"test-all-profiles" ["with-profile" "1.4:1.5" "test"]})
