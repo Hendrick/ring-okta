@@ -6,6 +6,7 @@
   :repositories {"local" ~(str (.toURI (java.io.File. "maven_repository")))}
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [ring/ring-core "1.3.1"]
+                 [ring-mock "0.1.5" :scope "test"]
                  [compojure "1.1.9"]
                  [org.clojure/data.codec "0.1.0"]
                  [com.okta/saml-toolkit "1.0.5-000148-30924be" :exclusions [[org.slf4j/slf4j-api]]]
@@ -21,7 +22,6 @@
                  [org.opensaml/opensaml "2.5.1-1"]]
   :plugins [[codox "0.8.10"]]
   :codox {:include ring.middleware.okta}
-  :profiles {:dev {:dependencies [[ring-mock "0.1.5"]]}
-             :1.3 {:dependencies [[org.clojure/clojure "1.3.0"]]}
+  :profiles {:1.3 {:dependencies [[org.clojure/clojure "1.3.0"]]}
              :1.4 {:dependencies [[org.clojure/clojure "1.4.0"]]} 
              :1.5 {:dependencies [[org.clojure/clojure "1.5.1"]]}})
