@@ -14,14 +14,16 @@
 (defn logged-in? [{:keys [session]}]
   (:okta/user session))
 
+(defn- match-pair? [[skip-method skip-path] request-method request-path]
+  (and (or (= :any skip-method)
+           (= skip-method request-method))
+       (= skip-path request-path)))
+
 (defn skip-route? [{:keys [request-method] :as request} skip-routes]
   (when skip-routes
-    (let [request-route (ring-request/path-info request)
-          route-index (.indexOf skip-routes request-route)
-          route-method (get skip-routes (dec route-index))]
-      (and (> route-index -1)
-           (or (= :any route-method)
-               (= request-method route-method))))))
+    (let [request-path (ring-request/path-info request)
+          skip-pairs (partition 2 skip-routes)]
+      (some #(match-pair? % request-method request-path) skip-pairs))))
 
 (defn force-user? [force-user]
   (not-nil? force-user))

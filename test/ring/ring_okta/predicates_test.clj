@@ -41,4 +41,8 @@
     (is (p/skip-route? (request :get "/foo")
                        [:any "/foo"]))
     (is (p/skip-route? (request :post "/foo")
-                       [:any "/foo"]))))
+                       [:any "/foo"])))
+
+  (testing "same route with multiple methods"
+    (is (p/skip-route? (request :post "/foo")
+                       [:get "/foo" :post "/foo"]))))
