@@ -29,4 +29,10 @@
   (is (not (p/skip-route? (request :get "/foo")
                           [:get "/bar"])))
   (is (not (p/skip-route? (request :get "/foo")
-                          [:post "/foo"]))))
+                          [:post "/foo"])))
+
+  (testing ":any can be used to match all route methods"
+    (is (p/skip-route? (request :get "/foo")
+                       [:any "/foo"]))
+    (is (p/skip-route? (request :post "/foo")
+                       [:any "/foo"]))))

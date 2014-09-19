@@ -36,7 +36,7 @@
                            (defaults to \"/\")
 
   :skip-routes           - a list of routes to skip Okta authentication
-                           e.g. [:get \"/about\" :get \"/contact\"]
+                           e.g. [:get \"/about\" :any \"/contact\"]
 
   :force-user            - a default user to be used for development"
 
