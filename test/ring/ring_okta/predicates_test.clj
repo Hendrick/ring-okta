@@ -23,10 +23,6 @@
   (testing "match route but not method"
     (is (not (p/logout? (request :get "/logout"))))))
 
-(deftest test-logged-in?
-  ;; TODO
-  )
-
 (deftest test-skip-route?
   (is (p/skip-route? (request :get "/foo")
                      [:get "/foo" :post "/foo"]))
@@ -34,7 +30,3 @@
                           [:get "/bar"])))
   (is (not (p/skip-route? (request :get "/foo")
                           [:post "/foo"]))))
-
-(deftest test-force-user?
-  ;; TODO
-  )
