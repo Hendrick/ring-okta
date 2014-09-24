@@ -1,5 +1,6 @@
 (ns ring.middleware.okta-test
   (:require [clojure.test :refer [deftest testing is]]
+            [clojure.test.helpers :refer [is-not]]
             [ring.middleware.okta :refer [wrap-okta]]
             [ring.mock.request :refer [request]]
             [ring.util.response :refer [response]]))
@@ -10,9 +11,13 @@
 (deftest test-wrap-okta
   (let [default-handler #(response %)]
     (testing ":okta-home option is required"
-      (let [handler (wrap-okta default-handler {})]
-        (is (thrown? IllegalArgumentException
-                     (handler (request :get "/"))))))
+      (testing "with :okta-home"
+        (let [handler (wrap-okta default-handler {:okta-home okta-home})]
+          (is-not (nil? (handler (request :get "/"))))))
+      (testing "without :okta-home"
+        (let [handler (wrap-okta default-handler {})]
+          (is (thrown? IllegalArgumentException
+                       (handler (request :get "/")))))))
 
     (testing "#login"
       (testing "default :okta-config")
