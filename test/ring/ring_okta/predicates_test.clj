@@ -1,11 +1,8 @@
 (ns ring.ring-okta.predicates-test
   (:require [clojure.test :refer [deftest testing is]]
+            [clojure.test.helpers :refer [is-not]]
             [ring.ring-okta.predicates :as p]
             [ring.mock.request :refer [request]]))
-
-(defmacro is-not
-  ([form] `(is-not ~form nil))
-  ([form msg] `(is (not ~form) ~msg)))
 
 (deftest test-login?
   (testing "match method and route"
