@@ -12,6 +12,7 @@
 
 (deftest test-wrap-okta
   (let [default-handler #(response %)]
+
     (testing ":okta-home option is required"
       (testing "with :okta-home"
         (let [handler (wrap-okta default-handler {:okta-home okta-home})]
@@ -46,11 +47,21 @@
                                                   :redirect-after-logout "/home"})
               response (handler (request :post "/logout"))]
           (is (= "/home" (-> response :body :redirect-after-logout)))))
-      (testing ":okta-home")))
+      (testing ":okta-home"))
 
-  (testing "#logged-in")
-  (testing "#skip-routes"
-    (testing "skip a defined request method")
-    (testing "skip any request method"))
-  (testing "#force-user")
-  (testing "#other"))
+    (testing "#logged-in")
+
+    (testing "#skip-routes"
+      (testing "with :skip-routes defined"
+        (let [handler (wrap-okta default-handler {:okta-home okta-home
+                                                  :skip-routes [:get "/foo"]})
+              response (handler (request :get "/foo"))]
+          (is (= "/foo" (-> response :body :uri)))))
+
+      (testing "without :skip-routes defined"
+        (let [handler (wrap-okta default-handler {:okta-home okta-home})
+              response (handler (request :get "/foo"))]
+          (is (nil? (-> response :body :uri))))))
+
+    (testing "#force-user")
+    (testing "#other")))
