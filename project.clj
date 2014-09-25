@@ -23,6 +23,8 @@
   :plugins [[codox "0.8.10"]]
   :codox {:include ring.middleware.okta}
   :profiles {:dev {:resource-paths ["test-resources"]}
-             :1.4 {:dependencies [[org.clojure/clojure "1.4.0"]]}
-             :1.5 {:dependencies [[org.clojure/clojure "1.5.1"]]}}
+             :1.4 {:resource-paths ["test-resources"]
+                   :dependencies [[org.clojure/clojure "1.4.0"]]}
+             :1.5 {:resource-paths ["test-resources"]
+                   :dependencies [[org.clojure/clojure "1.5.1"]]}}
   :aliases {"test-all-profiles" ["with-profile" "1.4:1.5" "test"]})
