@@ -74,4 +74,9 @@
         (let [handler (wrap-okta default-handler {:okta-home okta-home})
               response (handler (request :get "/foo"))]
           (is (nil? (-> response :body :session :okta/user))))))
-    (testing "#other")))
+
+    (testing "non-authenticated request"
+      (let [handler (wrap-okta default-handler {:okta-home okta-home})
+            response (handler (request :get "/foo"))]
+        (is (= 302 (-> response :status)))
+        (is (= okta-home (-> response :headers (get "Location"))))))))
