@@ -16,6 +16,7 @@
       (testing "with :okta-home"
         (let [handler (wrap-okta default-handler {:okta-home okta-home})]
           (is-not (nil? (handler (request :get "/"))))))
+
       (testing "without :okta-home"
         (let [handler (wrap-okta default-handler {})]
           (is (thrown? IllegalArgumentException
@@ -27,20 +28,25 @@
               response (handler (request :post "/login"))]
           (is (= (-> response :body :okta-config-location .getPath)
                  (-> default-okta-config io/resource .getPath)))))
+
       (testing "with defined :okta-config"
         (let [handler (wrap-okta default-handler {:okta-home okta-home
                                                   :okta-config custom-okta-config})
               response (handler (request :post "/login"))]
-          (is (= (-> response :body :okta-config-location) custom-okta-config))))
-      (testing "user in session")
-      (testing "redirected after login")))
+          (is (= (-> response :body :okta-config-location) custom-okta-config)))))
 
-  (testing "#logout"
-    (testing "user not in session")
-    (testing "redirected after logout"
-      (testing "defined")
-      (testing ":okta-home")
-      (testing "default")))
+    (testing "#logout"
+      (testing "with default :redirect-after-logout"
+        (let [handler (wrap-okta default-handler {:okta-home okta-home})
+              response (handler (request :post "/logout"))]
+          (is (= "/" (-> response :body :redirect-after-logout)))))
+
+      (testing "with defined :redirect-after-logout"
+        (let [handler (wrap-okta default-handler {:okta-home okta-home
+                                                  :redirect-after-logout "/home"})
+              response (handler (request :post "/logout"))]
+          (is (= "/home" (-> response :body :redirect-after-logout)))))
+      (testing ":okta-home")))
 
   (testing "#logged-in")
   (testing "#skip-routes"
