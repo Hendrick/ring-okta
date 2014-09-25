@@ -88,26 +88,28 @@
 
 (deftest test-okta-routes
   (testing "with okta-routes"
-    (let [default-handler (defroutes test-routes (GET "/foo" identity) okta-routes)
-          handler (wrap-okta default-handler {:okta-home okta-home})]
+    (let [default-handler (defroutes test-routes (GET "/foo" identity) okta-routes)]
       (testing "login"
         (with-redefs [ring.ring-okta.session/login identity]
-          (let [response (handler (request :post "/login"))]
+          (let [handler (wrap-okta default-handler {:okta-home okta-home})
+                response (handler (request :post "/login"))]
             (is (= :post (-> response :request-method)))
             (is (= "/login" (-> response :uri))))))
 
       (testing "logout"
         (with-redefs [ring.ring-okta.session/logout identity]
-          (let [response (handler (request :post "/logout"))]
-            (is (= 303 (-> response :status)))
-            (is (= "/" (-> response :headers (get "Location"))))))
+          (testing "with default redirect"
+            (let [handler (wrap-okta default-handler {:okta-home okta-home})
+                  response (handler (request :post "/logout"))]
+              (is (= 303 (-> response :status)))
+              (is (= "/" (-> response :headers (get "Location"))))))
 
-        (testing "with :redirect-after-logout option"
-          (let [handler (wrap-okta default-handler {:okta-home okta-home
-                                                    :redirect-after-logout "/foo"})
-                response (handler (request :post "/logout"))]
-            (is (= 303 (-> response :status)))
-            (is (= "/foo" (-> response :headers (get "Location")))))))))
+          (testing "with :redirect-after-logout option"
+            (let [handler (wrap-okta default-handler {:okta-home okta-home
+                                                      :redirect-after-logout "/foo"})
+                  response (handler (request :post "/logout"))]
+              (is (= 303 (-> response :status)))
+              (is (= "/foo" (-> response :headers (get "Location"))))))))))
 
   (testing "without okta-routes"
     (let [default-handler (defroutes test-routes (GET "/foo" identity) (not-found "Not Found"))
