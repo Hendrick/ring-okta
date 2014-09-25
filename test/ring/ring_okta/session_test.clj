@@ -18,4 +18,9 @@
                     ring.util.response/redirect-after-post stub-redirect-after-post]
         (is (= "foo@bar.com" (-> (login request) :session :okta/user))))))
 
-  (testing "redirect after login"))
+  (testing "redirect after login"
+    (let [request {:params {}
+                   :okta-config-location (io/resource "okta-config.xml")}]
+      (with-redefs [ring.ring-okta.session/respond-to-okta-post stub-respond-to-okta-post]
+        (is (= 303 (-> (login request) :status)))
+        (is (= "http://foo.bar.com" (-> (login request) :headers (get "Location"))))))))
