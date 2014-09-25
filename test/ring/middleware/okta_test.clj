@@ -2,7 +2,9 @@
   (:require [clojure.test :refer [deftest testing is]]
             [clojure.test.helpers :refer [is-not]]
             [clojure.java.io :as io]
-            [ring.middleware.okta :refer [wrap-okta]]
+            [compojure.core :refer [GET POST defroutes]]
+            [compojure.route :refer [not-found]]
+            [ring.middleware.okta :refer [wrap-okta okta-routes]]
             [ring.mock.request :refer [request]]
             [ring.util.response :refer [response]]))
 
@@ -83,3 +85,20 @@
             response (handler (request :get "/foo"))]
         (is (= 302 (-> response :status)))
         (is (= okta-home (-> response :headers (get "Location"))))))))
+
+(deftest test-okta-routes
+  (testing "with okta-routes"
+    (let [default-handler (defroutes test-routes (GET "/foo" identity) okta-routes)
+          handler (wrap-okta default-handler {:okta-home okta-home})]
+      (testing "login"
+        (with-redefs [ring.ring-okta.session/login identity]
+          (let [response (handler (request :post "/login"))]
+            (is (= :post (-> response :request-method)))
+            (is (= "/login" (-> response :uri))))))))
+
+  (testing "without okta-routes"
+    (let [default-handler (defroutes test-routes (GET "/foo" identity) (not-found "Not Found"))
+          handler (wrap-okta default-handler {:okta-home okta-home})]
+      (testing "login"
+        (let [response (handler (request :post "/login"))]
+          (is (= 404 (-> response :status))))))))
