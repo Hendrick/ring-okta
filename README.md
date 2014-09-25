@@ -65,8 +65,7 @@ the [gh-pages](https://github.com/Hendrick/ring-okta/tree/gh-pages) branch.
 
 ## Test Coverage
 
-The test coverage summary is built with cloverage (`lein cloverage`)
-and published to [Coverage Summary](https://raw.githubusercontent.com/Hendrick/ring-okta/master/target/covergage/index.html).
+The test coverage summary is built with cloverage (`lein cloverage`).
 
 ## License
 
