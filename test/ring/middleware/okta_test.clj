@@ -49,7 +49,10 @@
           (is (= "/home" (-> response :body :redirect-after-logout)))))
       (testing ":okta-home"))
 
-    (testing "#logged-in")
+    (testing "#logged-in"
+      (let [handler (wrap-okta default-handler {:okta-home okta-home})
+            response (handler (assoc-in (request :get "/foo") [:session :okta/user] "foo@bar.com"))]
+        (is (= "/foo" (-> response :body :uri)))))
 
     (testing "#skip-routes"
       (testing "with :skip-routes defined"
