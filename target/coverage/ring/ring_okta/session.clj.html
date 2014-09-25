@@ -1,0 +1,82 @@
+<html>
+ <head>
+  <link rel="stylesheet" href="../../coverage.css"/>  <title> ring/ring_okta/session.clj </title>
+ </head>
+ <body>
+<span class="partial" title="37 out of 38 forms covered">
+                 001&nbsp;&nbsp;(ns&nbsp;ring.ring-okta.session
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 002&nbsp;&nbsp;&nbsp;&nbsp;(:require&nbsp;[clojure.data.codec.base64&nbsp;:as&nbsp;b64]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 003&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[clojure.java.io&nbsp;:as&nbsp;io]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 004&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[clojure.string&nbsp;:as&nbsp;string]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 005&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ring.util.response&nbsp;:as&nbsp;ring-response])
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 006&nbsp;&nbsp;&nbsp;&nbsp;(:import&nbsp;(com.okta.saml&nbsp;SAMLValidator)))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 007&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="2 out of 2 forms covered">
+                 008&nbsp;&nbsp;(defn-&nbsp;respond-to-okta-post&nbsp;[params&nbsp;okta-config]
+                </span><br/>
+<span class="not-covered" title="0 out of 6 forms covered">
+                 009&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[validator&nbsp;(SAMLValidator.)
+                </span><br/>
+<span class="not-covered" title="0 out of 2 forms covered">
+                 010&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;config&nbsp;(.getConfiguration&nbsp;validator&nbsp;okta-config)
+                </span><br/>
+<span class="not-covered" title="0 out of 5 forms covered">
+                 011&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;encoded-saml-response&nbsp;(String.&nbsp;(b64/decode&nbsp;(.getBytes&nbsp;(:SAMLResponse&nbsp;params)&nbsp;"UTF-8")))
+                </span><br/>
+<span class="not-covered" title="0 out of 3 forms covered">
+                 012&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;saml-response&nbsp;(.getSAMLResponse&nbsp;validator&nbsp;encoded-saml-response&nbsp;config)
+                </span><br/>
+<span class="not-covered" title="0 out of 1 forms covered">
+                 013&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;authenticated-user-email&nbsp;(.getUserID&nbsp;saml-response)
+                </span><br/>
+<span class="not-covered" title="0 out of 3 forms covered">
+                 014&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;redirect-url&nbsp;(:RelayState&nbsp;params)]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 015&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{:redirect-url&nbsp;redirect-url
+                </span><br/>
+<span class="not-covered" title="0 out of 3 forms covered">
+                 016&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:authenticated-user-email&nbsp;(string/lower-case&nbsp;authenticated-user-email)}))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 017&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                 018&nbsp;&nbsp;(defn&nbsp;login&nbsp;[{:keys&nbsp;[params&nbsp;okta-config-location]}]
+                </span><br/>
+<span class="not-covered" title="0 out of 6 forms covered">
+                 019&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[okta-config&nbsp;(slurp&nbsp;(io/reader&nbsp;okta-config-location))
+                </span><br/>
+<span class="not-covered" title="0 out of 4 forms covered">
+                 020&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;okta-response&nbsp;(respond-to-okta-post&nbsp;params&nbsp;okta-config)]
+                </span><br/>
+<span class="not-covered" title="0 out of 10 forms covered">
+                 021&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(->&nbsp;(ring-response/redirect-after-post&nbsp;(:redirect-url&nbsp;okta-response))
+                </span><br/>
+<span class="not-covered" title="0 out of 3 forms covered">
+                 022&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(assoc-in&nbsp;[:session&nbsp;:okta/user]&nbsp;(:authenticated-user-email&nbsp;okta-response)))))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 023&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                 024&nbsp;&nbsp;(defn&nbsp;logout&nbsp;[{:keys&nbsp;[session]}]
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                 025&nbsp;&nbsp;&nbsp;&nbsp;(dissoc&nbsp;session&nbsp;:okta/user))
+                </span><br/>
+ </body>
+</html>

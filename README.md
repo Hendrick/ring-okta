@@ -63,6 +63,11 @@ the `project.clj` for the version of the SAML Toolkit to download from Okta.
 The documentation is built with codox (`lein doc`) and published to
 the [gh-pages](https://github.com/Hendrick/ring-okta/tree/gh-pages) branch.
 
+## Test Coverage
+
+The test coverage summary is built with cloverage (`lein cloverage`)
+and published to [Coverage Summary](https://raw.githubusercontent.com/Hendrick/ring-okta/master/target/covergage/index.html).
+
 ## License
 
 Copyright © 2014 Hendrick Automotive Group

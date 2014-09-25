@@ -1,0 +1,94 @@
+<html>
+ <head>
+  <link rel="stylesheet" href="../../coverage.css"/>  <title> ring/ring_okta/predicates.clj </title>
+ </head>
+ <body>
+<span class="partial" title="32 out of 33 forms covered">
+                 001&nbsp;&nbsp;(ns&nbsp;ring.ring-okta.predicates
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 002&nbsp;&nbsp;&nbsp;&nbsp;(:require&nbsp;[ring.util.request&nbsp;:as&nbsp;ring-request]))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 003&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="5 out of 5 forms covered">
+                 004&nbsp;&nbsp;(def&nbsp;not-nil?&nbsp;(comp&nbsp;not&nbsp;nil?))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 005&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                 006&nbsp;&nbsp;(defn&nbsp;login?&nbsp;[{:keys&nbsp;[request-method]&nbsp;:as&nbsp;request}]
+                </span><br/>
+<span class="covered" title="10 out of 10 forms covered">
+                 007&nbsp;&nbsp;&nbsp;&nbsp;(and&nbsp;(=&nbsp;request-method&nbsp;:post)
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                 008&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(=&nbsp;(ring-request/path-info&nbsp;request)&nbsp;"/login")))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 009&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                 010&nbsp;&nbsp;(defn&nbsp;logout?&nbsp;[{:keys&nbsp;[request-method]&nbsp;:as&nbsp;request}]
+                </span><br/>
+<span class="covered" title="10 out of 10 forms covered">
+                 011&nbsp;&nbsp;&nbsp;&nbsp;(and&nbsp;(=&nbsp;request-method&nbsp;:post)
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                 012&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(=&nbsp;(ring-request/path-info&nbsp;request)&nbsp;"/logout")))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 013&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                 014&nbsp;&nbsp;(defn&nbsp;logged-in?&nbsp;[{:keys&nbsp;[session]}]
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                 015&nbsp;&nbsp;&nbsp;&nbsp;(:okta/user&nbsp;session))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 016&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="2 out of 2 forms covered">
+                 017&nbsp;&nbsp;(defn-&nbsp;match-pair?&nbsp;[[skip-method&nbsp;skip-path]&nbsp;request-method&nbsp;request-path]
+                </span><br/>
+<span class="covered" title="14 out of 14 forms covered">
+                 018&nbsp;&nbsp;&nbsp;&nbsp;(and&nbsp;(or&nbsp;(=&nbsp;:any&nbsp;skip-method)
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                 019&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(=&nbsp;skip-method&nbsp;request-method))
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                 020&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(=&nbsp;skip-path&nbsp;request-path)))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 021&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                 022&nbsp;&nbsp;(defn&nbsp;skip-route?&nbsp;[{:keys&nbsp;[request-method]&nbsp;:as&nbsp;request}&nbsp;skip-routes]
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                 023&nbsp;&nbsp;&nbsp;&nbsp;(when&nbsp;skip-routes
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                 024&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[request-path&nbsp;(ring-request/path-info&nbsp;request)
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                 025&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;skip-pairs&nbsp;(partition&nbsp;2&nbsp;skip-routes)]
+                </span><br/>
+<span class="covered" title="9 out of 9 forms covered">
+                 026&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(some&nbsp;#(match-pair?&nbsp;%&nbsp;request-method&nbsp;request-path)&nbsp;skip-pairs))))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 027&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                 028&nbsp;&nbsp;(defn&nbsp;force-user?&nbsp;[force-user]
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                 029&nbsp;&nbsp;&nbsp;&nbsp;(not-nil?&nbsp;force-user))
+                </span><br/>
+ </body>
+</html>
