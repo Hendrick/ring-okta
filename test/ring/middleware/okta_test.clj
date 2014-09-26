@@ -88,7 +88,10 @@
 
 (deftest test-okta-routes
   (testing "with okta-routes"
-    (let [default-handler (defroutes test-routes (GET "/foo" identity) okta-routes)]
+    (let [default-handler (defroutes test-routes
+                            (GET "/foo" identity)
+                            okta-routes
+                            (not-found "Not Found"))]
       (testing "login"
         (with-redefs [ring.ring-okta.session/login identity]
           (let [handler (wrap-okta default-handler {:okta-home okta-home})
@@ -112,7 +115,9 @@
               (is (= "/foo" (-> response :headers (get "Location"))))))))))
 
   (testing "without okta-routes"
-    (let [default-handler (defroutes test-routes (GET "/foo" identity) (not-found "Not Found"))
+    (let [default-handler (defroutes test-routes
+                            (GET "/foo" identity)
+                            (not-found "Not Found"))
           handler (wrap-okta default-handler {:okta-home okta-home})]
       (testing "login"
         (let [response (handler (request :post "/login"))]
