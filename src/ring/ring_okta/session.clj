@@ -1,5 +1,6 @@
 (ns ring.ring-okta.session
   (:require [clojure.data.codec.base64 :as b64]
+            [clojure.core.incubator :refer [dissoc-in]]
             [clojure.java.io :as io]
             [clojure.string :as string]
             [ring.util.response :as ring-response])
@@ -21,5 +22,5 @@
     (-> (ring-response/redirect-after-post (:redirect-url okta-response))
         (assoc-in [:session :okta/user] (:authenticated-user-email okta-response)))))
 
-(defn logout [{:keys [session]}]
-  (dissoc session :okta/user))
+(defn logout [request]
+  (dissoc-in request [:session :okta/user]))

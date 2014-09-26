@@ -5,6 +5,7 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :repositories {"local" ~(str (.toURI (java.io.File. "maven_repository")))}
   :dependencies [[org.clojure/clojure "1.6.0"]
+                 [org.clojure/core.incubator "0.1.3"]
                  [ring/ring-core "1.3.1"]
                  [ring-mock "0.1.5" :scope "test"]
                  [compojure "1.1.9"]
