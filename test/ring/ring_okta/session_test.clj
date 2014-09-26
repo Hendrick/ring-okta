@@ -2,11 +2,11 @@
   (:require [clojure.test :refer [deftest testing is]]
             [ring.ring-okta.session :refer [login logout]]))
 
-(defn- stub-respond-to-okta-post [params okta-config]
+(defn- stub-respond-to-okta-post [& args]
   {:redirect-url "http://foo.bar.com"
    :authenticated-user-email "foo@bar.com"})
 
-(defn- stub-redirect-after-post [url]
+(defn- stub-redirect-after-post [& args]
   {})
 
 (deftest test-login
