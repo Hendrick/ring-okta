@@ -48,8 +48,7 @@
         (let [handler (wrap-okta default-handler {:okta-home okta-home
                                                   :redirect-after-logout "/home"})
               response (handler (request :post "/logout"))]
-          (is (= "/home" (-> response :body :redirect-after-logout)))))
-      (testing ":okta-home"))
+          (is (= "/home" (-> response :body :redirect-after-logout))))))
 
     (testing "#logged-in"
       (let [handler (wrap-okta default-handler {:okta-home okta-home})
