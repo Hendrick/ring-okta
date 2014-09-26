@@ -19,7 +19,7 @@
                  005&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[clojure.string&nbsp;:as&nbsp;string]
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                 006&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ring.util.response&nbsp;:as&nbsp;ring-response])
+                 006&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ring.util.response&nbsp;:as&nbsp;response])
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
                  007&nbsp;&nbsp;&nbsp;&nbsp;(:import&nbsp;(com.okta.saml&nbsp;SAMLValidator)))
@@ -67,7 +67,7 @@
                  021&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[okta-response&nbsp;(respond-to-okta-post&nbsp;params&nbsp;okta-config-location)]
                 </span><br/>
 <span class="covered" title="10 out of 10 forms covered">
-                 022&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(->&nbsp;(ring-response/redirect-after-post&nbsp;(:redirect-url&nbsp;okta-response))
+                 022&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(->&nbsp;(response/redirect-after-post&nbsp;(:redirect-url&nbsp;okta-response))
                 </span><br/>
 <span class="covered" title="3 out of 3 forms covered">
                  023&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(assoc-in&nbsp;[:session&nbsp;:okta/user]&nbsp;(:authenticated-user-email&nbsp;okta-response)))))

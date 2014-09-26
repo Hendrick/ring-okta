@@ -3,7 +3,7 @@
             [clojure.core.incubator :refer [dissoc-in]]
             [clojure.java.io :as io]
             [clojure.string :as string]
-            [ring.util.response :as ring-response])
+            [ring.util.response :as response])
   (:import (com.okta.saml SAMLValidator)))
 
 (defn- respond-to-okta-post [params okta-config-location]
@@ -19,7 +19,7 @@
 
 (defn login [{:keys [params okta-config-location]}]
   (let [okta-response (respond-to-okta-post params okta-config-location)]
-    (-> (ring-response/redirect-after-post (:redirect-url okta-response))
+    (-> (response/redirect-after-post (:redirect-url okta-response))
         (assoc-in [:session :okta/user] (:authenticated-user-email okta-response)))))
 
 (defn logout [request]
