@@ -23,7 +23,8 @@
                  [org.opensaml/opensaml "2.5.1-1"]]
   :plugins [[codox "0.8.10"]
             [lein-cloverage "1.0.2"]]
-  :codox {:include ring.middleware.okta}
+  :codox {:include ring.middleware.okta
+          :output-dir "../ring-okta-doc"}
   :profiles {:dev {:resource-paths ["test-resources"]}
              :1.4 {:resource-paths ["test-resources"]
                    :dependencies [[org.clojure/clojure "1.4.0"]]}
