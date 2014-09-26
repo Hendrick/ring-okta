@@ -1,0 +1,23 @@
+v0.1.3 2014-09-26
+
+	* Fix a bug where logout would lose information in the request
+	object to be passed to the redirect.
+
+v0.1.2 2014-09-19
+
+	* Fix a bug where a route would not be skipped if it's matching
+	route method came after a pair with a matching route path.
+	e.g. :skip-routes [:get "/about" :post "/about"] the :post
+	"/about" would not have been skipped.
+
+v0.1.1 2014-09-10
+
+	* Package is now deployed as ring-okta instead of ring/ring-okta.
+
+v0.1.0 2014-09-09
+
+	* Initial release.
+
+
+Copyright © 2014 Hendrick Automotive Group
+Distributed under the Eclipse Public License either version 1.0 or (at your option) any later version.
