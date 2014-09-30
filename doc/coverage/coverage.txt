@@ -1,4 +1,4 @@
 Lines Non-Blank Instrumented Covered Partial
    29        22      21         20          1 ring/ring_okta/predicates.clj
    28        25      17          8          1 ring/ring_okta/session.clj
-   56        43      19         18          1 ring/middleware/okta.clj
+   55        42      18         17          1 ring/middleware/okta.clj

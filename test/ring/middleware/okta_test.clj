@@ -21,9 +21,10 @@
           (is-not (nil? (handler (request :get "/"))))))
 
       (testing "without :okta-home"
-        (let [handler (wrap-okta default-handler {})]
-          (is (thrown? IllegalArgumentException
-                       (handler (request :get "/")))))))
+        (is (thrown? java.lang.AssertionError
+                     (wrap-okta default-handler {})))
+        (is (thrown? java.lang.AssertionError
+                     (wrap-okta default-handler {:okta-home ""})))))
 
     (testing "#login"
       (testing "with default :okta-config"
