@@ -41,14 +41,15 @@
   :force-user            - a default user to be used for development"
 
   {:arglists '([handler options]) :added "0.1.0"}
-  [handler options]
+  [handler {:keys [okta-config redirect-after-logout]
+            :or {okta-config (io/resource "okta-config.xml")
+                 redirect-after-logout "/"}
+            :as options}]
   {:pre [(not-empty (:okta-home options))]}
   (fn [request]
     (cond
-     (p/login? request) (handler (assoc request :okta-config-location (or (:okta-config options)
-                                                                          (io/resource "okta-config.xml"))))
-     (p/logout? request) (handler (assoc request :redirect-after-logout (or (:redirect-after-logout options)
-                                                                            "/")))
+     (p/login? request) (handler (assoc request :okta-config-location okta-config))
+     (p/logout? request) (handler (assoc request :redirect-after-logout redirect-after-logout))
      (p/logged-in? request) (handler request)
      (p/skip-route? request (:skip-routes options)) (handler request)
      (p/force-user? (:force-user options)) (handler (assoc-in request [:session :okta/user] (:force-user options)))
