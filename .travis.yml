@@ -2,6 +2,9 @@ language: clojure
 script: lein test-all-profiles
 notifications:
   slack: hendrick:PHKZKNc7PL6h6BMyGvFk1rts
+  on_success: change
+  on_failure: always
+  on_start: false
 branches:
   except:
     - gh-pages
