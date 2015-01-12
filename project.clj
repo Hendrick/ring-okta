@@ -30,5 +30,5 @@
                    :dependencies [[org.clojure/clojure "1.4.0"]]}
              :1.5 {:resource-paths ["test-resources"]
                    :dependencies [[org.clojure/clojure "1.5.1"]]}}
-  :aliases {"test-all-profiles" ["with-profile" "1.4:1.5" "test"]
+  :aliases {"test-all-profiles" ["with-profile" "1.4:1.5:dev" "test"]
             "cloverage" ["do" "cloverage" "--output" "doc/coverage"]})
