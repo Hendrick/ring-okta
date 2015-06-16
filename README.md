@@ -69,7 +69,7 @@ The test coverage summary is built with [cloverage](https://github.com/lshift/cl
 
 ## License
 
-Copyright © 2014 Hendrick Automotive Group
+Copyright © 2015 Hendrick Automotive Group
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
