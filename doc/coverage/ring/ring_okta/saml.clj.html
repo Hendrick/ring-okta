@@ -1,0 +1,37 @@
+<html>
+ <head>
+  <link rel="stylesheet" href="../../coverage.css"/>  <title> ring/ring_okta/saml.clj </title>
+ </head>
+ <body>
+<span class="covered" title="1 out of 1 forms covered">
+                 001&nbsp;&nbsp;(ns&nbsp;ring.ring-okta.saml
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 002&nbsp;&nbsp;&nbsp;&nbsp;(:require&nbsp;[clojure.data.codec.base64&nbsp;:as&nbsp;b64])
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                 003&nbsp;&nbsp;&nbsp;&nbsp;(:import&nbsp;(com.okta.saml&nbsp;SAMLValidator)))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                 004&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                 005&nbsp;&nbsp;(defn&nbsp;get-valid-user-id&nbsp;[okta-config&nbsp;saml-response]
+                </span><br/>
+<span class="not-covered" title="0 out of 2 forms covered">
+                 006&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[validator&nbsp;(SAMLValidator.)
+                </span><br/>
+<span class="not-covered" title="0 out of 2 forms covered">
+                 007&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;config&nbsp;(.getConfiguration&nbsp;validator&nbsp;okta-config)
+                </span><br/>
+<span class="not-covered" title="0 out of 5 forms covered">
+                 008&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;decoded-saml-response&nbsp;(String.&nbsp;(b64/decode&nbsp;(.getBytes&nbsp;saml-response&nbsp;"UTF-8")))
+                </span><br/>
+<span class="not-covered" title="0 out of 3 forms covered">
+                 009&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;valid-saml-response&nbsp;(.getSAMLResponse&nbsp;validator&nbsp;decoded-saml-response&nbsp;config)]
+                </span><br/>
+<span class="not-covered" title="0 out of 1 forms covered">
+                 010&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(.getUserID&nbsp;valid-saml-response)))
+                </span><br/>
+ </body>
+</html>
