@@ -29,6 +29,8 @@
              :1.5 {:resource-paths ["test-resources"]
                    :dependencies [[org.clojure/clojure "1.5.1"]]}
              :1.6 {:resource-paths ["test-resources"]
-                   :dependencies [[org.clojure/clojure "1.6.0"]]}}
-  :aliases {"test-all-profiles" ["with-profile" "dev:1.5:1.6" "test"]
+                   :dependencies [[org.clojure/clojure "1.6.0"]]}
+             :1.7 {:resource-paths ["test-resources"]
+                   :dependencies [[org.clojure/clojure "1.7.0-RC1"]]}}
+  :aliases {"test-all-profiles" ["with-profile" "dev:1.5:1.6:1.7" "test"]
             "cloverage" ["do" "cloverage" "--output" "doc/coverage"]})
