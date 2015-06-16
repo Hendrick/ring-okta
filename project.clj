@@ -6,9 +6,9 @@
   :repositories {"local" ~(str (.toURI (java.io.File. "maven_repository")))}
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [org.clojure/core.incubator "0.1.3"]
-                 [ring/ring-core "1.3.1"]
+                 [ring/ring-core "1.3.2"]
                  [ring-mock "0.1.5" :scope "test"]
-                 [compojure "1.1.9"]
+                 [compojure "1.3.4"]
                  [org.clojure/data.codec "0.1.0"]
                  [com.okta/saml-toolkit "1.0.5-000148-30924be" :exclusions [[org.slf4j/slf4j-api]]]
 
@@ -26,9 +26,9 @@
   :codox {:include ring.middleware.okta
           :output-dir "../ring-okta-doc"}
   :profiles {:dev {:resource-paths ["test-resources"]}
-             :1.4 {:resource-paths ["test-resources"]
-                   :dependencies [[org.clojure/clojure "1.4.0"]]}
              :1.5 {:resource-paths ["test-resources"]
-                   :dependencies [[org.clojure/clojure "1.5.1"]]}}
-  :aliases {"test-all-profiles" ["with-profile" "1.4:1.5:dev" "test"]
+                   :dependencies [[org.clojure/clojure "1.5.1"]]}
+             :1.6 {:resource-paths ["test-resources"]
+                   :dependencies [[org.clojure/clojure "1.6.0"]]}}
+  :aliases {"test-all-profiles" ["with-profile" "dev:1.5:1.6" "test"]
             "cloverage" ["do" "cloverage" "--output" "doc/coverage"]})
