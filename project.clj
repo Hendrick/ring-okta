@@ -21,8 +21,8 @@
                  [org.apache.commons/commons-lang3 "3.0"]
                  [javax.servlet/javax.servlet-api "3.0.1" :scope "provided"]
                  [org.opensaml/opensaml "2.5.1-1"]]
-  :plugins [[codox "0.8.10"]
-            [lein-cloverage "1.0.2"]]
+  :plugins [[codox "0.8.12"]
+            [lein-cloverage "1.0.6"]]
   :codox {:include ring.middleware.okta
           :output-dir "../ring-okta-doc"}
   :profiles {:dev {:resource-paths ["test-resources"]}
