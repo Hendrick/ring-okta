@@ -51,6 +51,6 @@
      (p/login? request) (handler (assoc request :okta-config-location okta-config))
      (p/logout? request) (handler (assoc request :redirect-after-logout redirect-after-logout))
      (p/logged-in? request) (handler request)
-     (p/skip-route? request (:skip-routes options)) (handler request)
      (p/force-user? (:force-user options)) (handler (assoc-in request [:session :okta/user] (:force-user options)))
+     (p/skip-route? request (:skip-routes options)) (handler request)
      :else (ring-response/redirect (:okta-home options)))))
