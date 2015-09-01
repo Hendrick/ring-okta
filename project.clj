@@ -33,4 +33,5 @@
              :1.7 {:resource-paths ["test-resources"]
                    :dependencies [[org.clojure/clojure "1.7.0"]]}}
   :aliases {"test-all-profiles" ["with-profile" "dev:1.5:1.6:1.7" "test"]
-            "cloverage" ["do" "cloverage" "--output" "doc/coverage"]})
+            "cloverage" ["do" "cloverage" "--output" "doc/coverage"]
+            "release" ["do" "clean," "deploy" "clojars"]})
