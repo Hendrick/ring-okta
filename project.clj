@@ -6,9 +6,9 @@
   :repositories {"local" ~(str (.toURI (java.io.File. "maven_repository")))}
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [org.clojure/core.incubator "0.1.3"]
-                 [ring/ring-core "1.3.2"]
+                 [ring/ring-core "1.4.0"]
                  [ring-mock "0.1.5" :scope "test"]
-                 [compojure "1.3.4"]
+                 [compojure "1.4.0"]
                  [org.clojure/data.codec "0.1.0"]
                  [com.okta/saml-toolkit "1.0.5-000148-30924be" :exclusions [[org.slf4j/slf4j-api]]]
 
