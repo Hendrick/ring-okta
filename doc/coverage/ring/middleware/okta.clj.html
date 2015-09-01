@@ -162,11 +162,11 @@
 <span class="covered" title="6 out of 6 forms covered">
                  053&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(p/logged-in?&nbsp;request)&nbsp;(handler&nbsp;request)
                 </span><br/>
-<span class="covered" title="9 out of 9 forms covered">
-                 054&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(p/skip-route?&nbsp;request&nbsp;(:skip-routes&nbsp;options))&nbsp;(handler&nbsp;request)
-                </span><br/>
 <span class="covered" title="16 out of 16 forms covered">
-                 055&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(p/force-user?&nbsp;(:force-user&nbsp;options))&nbsp;(handler&nbsp;(assoc-in&nbsp;request&nbsp;[:session&nbsp;:okta/user]&nbsp;(:force-user&nbsp;options)))
+                 054&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(p/force-user?&nbsp;(:force-user&nbsp;options))&nbsp;(handler&nbsp;(assoc-in&nbsp;request&nbsp;[:session&nbsp;:okta/user]&nbsp;(:force-user&nbsp;options)))
+                </span><br/>
+<span class="covered" title="9 out of 9 forms covered">
+                 055&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(p/skip-route?&nbsp;request&nbsp;(:skip-routes&nbsp;options))&nbsp;(handler&nbsp;request)
                 </span><br/>
 <span class="covered" title="5 out of 5 forms covered">
                  056&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:else&nbsp;(ring-response/redirect&nbsp;(:okta-home&nbsp;options)))))
