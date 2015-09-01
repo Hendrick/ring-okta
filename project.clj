@@ -1,4 +1,4 @@
-(defproject ring-okta "0.1.5"
+(defproject ring-okta "0.1.6-SNAPSHOT"
   :description "Ring middleware for Okta Single Sign-on"
   :url "https://github.com/Hendrick/ring-okta"
   :license {:name "Eclipse Public License"
