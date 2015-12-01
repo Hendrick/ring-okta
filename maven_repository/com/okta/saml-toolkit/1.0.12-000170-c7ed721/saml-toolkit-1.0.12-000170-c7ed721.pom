@@ -4,6 +4,6 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.okta</groupId>
   <artifactId>saml-toolkit</artifactId>
-  <version>1.0.5-000148-30924be</version>
+  <version>1.0.12-000170-c7ed721</version>
   <description>POM was created from install:install-file</description>
 </project>

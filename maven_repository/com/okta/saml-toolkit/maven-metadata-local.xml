@@ -3,10 +3,10 @@
   <groupId>com.okta</groupId>
   <artifactId>saml-toolkit</artifactId>
   <versioning>
-    <release>1.0.5-000148-30924be</release>
+    <release>1.0.12-000170-c7ed721</release>
     <versions>
-      <version>1.0.5-000148-30924be</version>
+      <version>1.0.12-000170-c7ed721</version>
     </versions>
-    <lastUpdated>20140416194414</lastUpdated>
+    <lastUpdated>20151201215207</lastUpdated>
   </versioning>
 </metadata>
