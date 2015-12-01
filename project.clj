@@ -17,7 +17,7 @@
                  ;; we do in order to please the Travis-CI gods
                  [com.sun.xml.parsers/jaxp-ri "1.4.5"]
                  [org.slf4j/slf4j-api "1.6.1" :scope "provided"]
-                 [org.slf4j/slf4j-simple "1.6.1" :scope "provided"]
+                 [org.slf4j/slf4j-simple "1.6.1" :scope "test"]
                  [com.google.inject/guice "3.0"]
                  [org.bouncycastle/bcprov-jdk16 "1.45"]
                  [org.apache.commons/commons-lang3 "3.0"]
