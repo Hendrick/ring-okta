@@ -1,5 +1,6 @@
 language: clojure
 script: lein test-all-profiles
+sudo: false
 notifications:
   slack: hendrick:PHKZKNc7PL6h6BMyGvFk1rts
   on_success: change
