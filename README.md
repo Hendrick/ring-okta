@@ -67,6 +67,14 @@ the [gh-pages](https://github.com/Hendrick/ring-okta/tree/gh-pages) branch.
 
 The test coverage summary is built with [cloverage](https://github.com/lshift/cloverage) (`lein cloverage`).
 
+## Development
+
+As described in **Usage** above, the Okta SAML Toolkit must be downloaded and installed to your local maven repository. When updating this dependency, here is how you can install the downloaded jar:
+
+```
+$ mvn install:install-file -Dfile=saml-toolkit.jar -DgroupId=com.okta -DartifactId=saml-toolkit -Dpackaging=jar -Dversion=<version> -DcreateChecksum=true -DupdateReleaseInfo=true -DgeneratePom=true -DlocalRepositoryPath=/path/to/localRepo
+```
+
 ## License
 
 Copyright © 2015 Hendrick Automotive Group
