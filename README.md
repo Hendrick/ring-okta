@@ -58,7 +58,7 @@ the `project.clj` for the version of the SAML Toolkit to download from Okta.
 
 ## Documentation
 
-- [API Docs](http://Hendrick.github.io/ring-okta/ring.middleware.okta.html)
+- [API Docs](http://Hendrick.github.io/ring-okta/index.html)
 
 The documentation is built with [codox](https://github.com/weavejester/codox) (`lein doc`) and published to
 the [gh-pages](https://github.com/Hendrick/ring-okta/tree/gh-pages) branch.
