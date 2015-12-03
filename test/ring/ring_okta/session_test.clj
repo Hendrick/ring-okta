@@ -11,7 +11,7 @@
 
 (deftest test-login
   (let [request {:params {} :okta-config-location "foo.xml"}]
-    (with-redefs [ring.ring-okta.session/respond-to-okta-post stub-respond-to-okta-post]
+    (with-redefs [ring.ring-okta.saml/respond-to-okta-post stub-respond-to-okta-post]
       (testing "user placed in session"
         (is (= "foo@bar.com" (-> (login request) :session :okta/user))))
 
