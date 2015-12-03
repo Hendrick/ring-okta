@@ -75,6 +75,19 @@ As described in **Usage** above, the Okta SAML Toolkit must be downloaded and in
 $ mvn install:install-file -Dfile=saml-toolkit.jar -DgroupId=com.okta -DartifactId=saml-toolkit -Dpackaging=jar -Dversion=<version> -DcreateChecksum=true -DupdateReleaseInfo=true -DgeneratePom=true -DlocalRepositoryPath=/path/to/localRepo
 ```
 
+### Generating API Docs
+
+The `lein doc` command is configured in `project.clj` to output documentation to `../ring-okta-doc`. This should be configured to be the `gh-pages` branch so the API docs can be hosted on GitHub.
+
+```
+~/code
+  |- ring-okta
+  |- ring-okta-doc
+  ...
+```
+
+Once `lein doc` is run in `ring-okta`, you can commit the changes in `ring-okta-doc` to the `gh-pages` branch of this repository.
+
 ## License
 
 Copyright © 2015 Hendrick Automotive Group
