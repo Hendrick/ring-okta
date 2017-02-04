@@ -4,7 +4,8 @@
 
 (defn- stub-respond-to-okta-post [& args]
   {:redirect-url "http://foo.bar.com"
-   :authenticated-user-email "foo@bar.com"})
+   :authenticated-user-email "foo@bar.com"
+   :authenticated-attributes {"some-attribute" ["some value"]}})
 
 (defn- stub-redirect-after-post [& args]
   {})
@@ -13,7 +14,9 @@
   (let [request {:params {} :okta-config-location "foo.xml"}]
     (with-redefs [ring.ring-okta.saml/respond-to-okta-post stub-respond-to-okta-post]
       (testing "user placed in session"
-        (is (= "foo@bar.com" (-> (login request) :session :okta/user))))
+        (is (= "foo@bar.com" (-> (login request) :session :okta/user)))
+        (is (= {"some-attribute" ["some value"]}
+               (-> (login request) :session :okta/attributes))))
 
       (testing "redirect after login"
         (is (= 303 (-> (login request) :status)))
