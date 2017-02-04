@@ -4,15 +4,22 @@
             [clojure.string :as string])
   (:import (com.okta.saml SAMLValidator)))
 
-(defn- get-valid-user-id [okta-config saml-response]
+(defn- get-valid-saml-response [okta-config saml-response]
   (let [validator (SAMLValidator.)
         config (.getConfiguration validator okta-config)
         decoded-saml-response (String. (b64/decode (.getBytes saml-response "UTF-8")))
         valid-saml-response (.getSAMLResponse validator decoded-saml-response config)]
-    (.getUserID valid-saml-response)))
+    valid-saml-response))
+
+(defn- get-valid-user-id [okta-config saml-response]
+  (.getUserID (get-valid-saml-response okta-config saml-response)))
+
+(defn- get-valid-attributes [okta-config saml-response]
+  (.getAttributes (get-valid-saml-response okta-config saml-response)))
 
 (defn respond-to-okta-post [params okta-config-location]
   (let [okta-config (slurp (io/reader okta-config-location))]
     {:redirect-url (:RelayState params)
      :authenticated-user-email (string/lower-case
-                                (get-valid-user-id okta-config (:SAMLResponse params)))}))
+                                (get-valid-user-id okta-config (:SAMLResponse params)))
+     :authenticated-attributes (get-valid-attributes okta-config (:SAMLResponse params))}))
